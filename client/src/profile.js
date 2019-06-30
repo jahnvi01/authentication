@@ -4,14 +4,18 @@ import {connect} from 'react-redux';
 
 class profile extends Component {
    conditioncheck=()=>{
-     console.log(this.props.authorized);
-    if(this.props.authorized===false){
+
+   if(!this.props.token){
+
       this.props.history.push('/');
-      }
+   }
+   }
+   componentDidMount(){
+    this.props.get();
    }
     render(){
-    
-     //this.conditioncheck();
+
+     this.conditioncheck();
         return (
        <div>
                 <h1 style={{textAlign: "center"}}>
@@ -31,16 +35,25 @@ class profile extends Component {
 function mapStateToProps(state){
   console.log("profile");
     console.log(state);
-    return {users:state.users,
+    return {
         user:state.user,
-        token:state.token,
-        authorized:state.authorized
+        token:state.token
     }
   }
   function mapDispatchToStates(dispatch){
     return{
       get:()=>{
-        return fetch('/api/info')
+       
+        const token=localStorage.getItem('token');
+      //  console.log(token);
+        const config={
+          headers:{
+            "content-type": "application/json",
+            "x-auth-token": token
+          }
+        } 
+       
+        return fetch('/api/info',config)
         .then(res=>res.json())
         .then(data=>dispatch({type:"get",payload:data}))
       },

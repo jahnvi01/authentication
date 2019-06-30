@@ -28,7 +28,7 @@ this.props.login(post);
   this.props.clear();
 
     }
-    if(this.props.authorized===true){
+    if(this.props.token){
       this.props.history.push('/profile');
       }
       return (
@@ -63,7 +63,6 @@ this.props.login(post);
     return {users:state.users,
       user:state.user,
       token:state.token,
-      authorized:state.authorized,
        message:state.message     
     
     }
@@ -71,7 +70,17 @@ this.props.login(post);
   function mapDispatchToStates(dispatch){
     return{
       get:()=>{
-        return fetch('/api/info')
+        const token=localStorage.getItem('token');
+        console.log(token);
+        const config={
+          headers:{
+            "content-type": "application/json"
+          }
+        } 
+        if(token){
+          config.headers['x-auth-token']=token;
+        }
+        return fetch('/api/info',config)
         .then(res=>res.json())
         .then(data=>dispatch({type:"get",payload:data}))
       },

@@ -21,8 +21,9 @@ const auth=require('./config');
 //     }
 // )
 
-router.get('/',(req, res) => {
-userchar.find({})
+router.get('/',auth,(req, res) => {
+    email=req.user.email;
+userchar.find({email})
 .then(user=>{
     res.json(
         user
@@ -49,7 +50,7 @@ router.post('/login',(req, res) => {
       .then(user=>{
           if(!user){
                 res.json({
-                  authorized:false,
+                
                   message: "user is not registered"
               })
           }
@@ -61,16 +62,16 @@ const username=user.username;
 
             bcrypt.compare(password,user.password)
             .then(isMatch=>{
-                if(!isMatch) return res.json({message: "invalid password",authorized:false});
+                if(!isMatch) return res.json({message: "invalid password"});
                 jwt.sign({email,username,password},'secretkey',(err,token)=>{
                     if (err) throw err;
+               
                     res.json({
                        token:token,
                        user:{
                         email: email,
                         username: username,
                         password: password  },
-                        authorized:true ,
                         message:""
                     });
                 })
@@ -107,7 +108,7 @@ router.post('/signin',(req, res) => {
     .then(user=>{
         if(user){
               res.json({
-                authorized:false,
+          
                 message: "user already exists! try again"
             })
         }
@@ -121,7 +122,7 @@ router.post('/signin',(req, res) => {
                 bcrypt.hash(newUSer.password, salt, (err, hash) => {
                     if (err)  {
                     res.json({
-                        authorized:false,
+                       
                         message: "invalid data! try again"
                     }
                     )
@@ -139,7 +140,6 @@ router.post('/signin',(req, res) => {
                                     password: newUser.password
                                     
                                 },
-                                authorized: true,
                                 message:""
                             });
                         })

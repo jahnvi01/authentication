@@ -32,7 +32,7 @@ class reg extends Component {
   this.props.clear();
 
     }
-    if(this.props.authorized===true){
+    if(this.props.token){
       this.props.history.push('/profile');
       }
       
@@ -70,7 +70,6 @@ class reg extends Component {
     return {users:state.users,
       user:state.user,
       token:state.token,
-      authorized:state.authorized,
        message:state.message     
     
     }
@@ -78,12 +77,18 @@ class reg extends Component {
   function mapDispatchToStates(dispatch){
     return{
       get:()=>{
-        return fetch('/api/info')
+        const token=localStorage.getItem('token');
+        const config={
+          headers:{
+            "content-type": "application/json"
+          }
+        } 
+        if(token){
+          config.headers['x-auth-token']=token;
+        }
+        return fetch('/api/info',config)
         .then(res=>res.json())
         .then(data=>dispatch({type:"get",payload:data}))
-      },
-      clear:()=>{
-        dispatch({type:"clear",payload:""})
       },
       signin:(user)=>{
         console.log("in signin");

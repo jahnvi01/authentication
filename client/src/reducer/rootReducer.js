@@ -1,21 +1,19 @@
 var initState={
-    users:[],
-    token:[],
+    token:localStorage.getItem('token'),
     user:[],
-    authorized:false,
     message:""
 }
 
 const rootReducer =(state=initState,action)=>{
-console.log(state);
 console.log(action.payload);
-
+// //var currentColor = localStorage.getItem('token');
+//console.log(currentColor);
 switch(action.type){
-    case "get": return {...state,users:action.payload};
-    case "add": return {...state,users:[action.payload.user,...state.users],user:[action.payload.user],token:[action.payload.token],message:action.payload.message,authorized:action.payload.authorized}
-    case "login": return{...state,user:[action.payload.user],token:[action.payload.token],message:action.payload.message,authorized:action.payload.authorized}
+    case "get": return {...state,user:action.payload};
+    case "add":   localStorage.setItem('token',action.payload.token); return {...state,user:[action.payload.user],token:[action.payload.token],message:action.payload.message}
+    case "login":localStorage.setItem('token',action.payload.token); return{...state,user:[action.payload.user],token:[action.payload.token],message:action.payload.message}
     case "clear": return{...state,message:[action.payload]}
-    case "logout": return{...state,user:[],authorized:false,message:""}
+    case "logout": localStorage.removeItem('token'); return{...state,user:[],message:"",token:null}
     default: return state;
 }
 }

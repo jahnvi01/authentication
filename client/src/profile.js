@@ -11,7 +11,7 @@ class profile extends Component {
    }
     render(){
     
-     this.conditioncheck();
+     //this.conditioncheck();
         return (
        <div>
                 <h1 style={{textAlign: "center"}}>

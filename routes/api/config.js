@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 
 function auth(req,res,next){

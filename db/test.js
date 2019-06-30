@@ -1,13 +1,15 @@
 var mongoose =require('mongoose');
-const testchar=require('./db');
+const userchar=require('./db');
 const mocha=require('mocha');
 const assert=require('assert');
+
 describe('testing mocha',()=>{
 
     it('add',(done)=>{
-        var char=new testchar({
-            name:"jahnvi",
-            weight:49
+        var char=new userchar({
+            email:"j@g.com",
+            username:"jahnvi",
+            password:'jahnvi'
 
         });
         char.save()

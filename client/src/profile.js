@@ -46,7 +46,7 @@ class profile extends Component {
                   <h3>email: {email}</h3>
                 </div>
 
-
+<Link to='/test'><button>Start Test</button></Link>
 
   </div>
 

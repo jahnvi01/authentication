@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Log from './login';
 import Profile from './profile';
+import Quiz from './components/quiz';
 import { Switch, Route} from 'react-router-dom';
 import './App.css';
 import Reg from './reg';
@@ -15,6 +16,7 @@ class App extends Component {
     <Switch>    <Route exact path="/register" component={Reg} />
     <Route exact path="/" component={Log} />
     <Route exact path="/profile" component={Profile} />
+    <Route exact path="/test" component={Quiz} />
     </Switch >
 
 

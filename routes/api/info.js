@@ -3,7 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 // const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
-const userchar=require('../../db/db');
+const char=require('../../db/db');
+const userchar=char.userchar;
 const auth=require('./config');
 
 router.get('/',auth,(req, res) => {
@@ -15,15 +16,6 @@ userchar.find({email})
     ) 
 })
 });
-
-
-
-
-
-
-
-
-
 
 
 

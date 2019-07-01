@@ -1,15 +1,20 @@
 var mongoose =require('mongoose');
-const userchar=require('./db');
+const char=require('./db');
+const userchar=char.userchar;
+const pollchar=char.pollchar;
 const mocha=require('mocha');
 const assert=require('assert');
 
 describe('testing mocha',()=>{
 
     it('add',(done)=>{
-        var char=new userchar({
-            email:"j@g.com",
-            username:"jahnvi",
-            password:'jahnvi'
+        var char=new pollchar({
+            question:"sinA/cosA?",
+            opt1:"secA",
+            opt2:'cosecA',
+            opt3:"cotA",
+            opt4:"tanA",
+            answer:"tanA"
 
         });
         char.save()

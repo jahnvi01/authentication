@@ -1,11 +1,13 @@
 html,body,.App{
-  background: #d47677;
+  background: black;
 }
-
+h3{
+  color:white;
+}
 .block{
   height: auto;
   margin: 10%;
-  background: #d47677;
+  background: black;
   display: flex;
   flex-direction: column;
   justify-content: center;

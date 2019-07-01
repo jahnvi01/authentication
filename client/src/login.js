@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 class log extends Component {
   
+
   getDetail=(event)=>{
     event.preventDefault();
 var email=document.getElementById('email-input').value;
@@ -19,12 +20,13 @@ this.props.login(post);
 }
   }
   componentWillMount(){
+
     this.props.get();
   }
   render() {
     if(this.props.message[0]!=="" && this.props.message!==""){
    
-      console.log("console" + this.props.message);
+      console.log(this.props.message);
   this.props.clear();
 
     }

@@ -5,21 +5,6 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const userchar=require('../../db/db');
 const auth=require('./config');
-// var con = mysql.createConnection(
-//     {
-//         host: "localhost",
-//         user: "root",
-//         password: "jahnvi123",
-//         database: "authentication",
-//     }
-// );
-
-// con.connect(
-//     function (err) {
-//         if (err) throw err;
-//         console.log("connected");
-//     }
-// )
 
 router.get('/',auth,(req, res) => {
     email=req.user.email;

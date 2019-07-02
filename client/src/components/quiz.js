@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 class Quiz extends Component {
 
 state={
-  testset:{}
+  testset:null,
+
 }
 getTest=()=>{
   const token = localStorage.getItem('token');
@@ -28,11 +29,31 @@ getTest=()=>{
    
   }
   componentDidMount(){
-    this.getTest();
-
+  this.getTest();
   }
   render() {
-    console.log(this.state.testset);
+    var questions
+  
+    if(this.state.testset){
+      var i=0;
+questions=this.state.testset.map(question=>{
+  i++;
+ return <div key={question._id}> 
+ 
+   <h4>{i}.  {question.question}</h4>
+<div className="row">
+  <ul>
+  <li className="options"><input type="checkbox" value={question.opt1}/>{question.opt1}</li>
+  <li className="options"><input type="checkbox" value={question.opt2}/>{question.opt2}</li>
+  <li className="options"><input type="checkbox" value={question.opt3}/>{question.opt3}</li>
+  <li className="options"><input type="checkbox" value={question.opt4}/>{question.opt4}</li>
+  </ul>
+  </div>
+
+ </div>
+}
+)
+    }
     if (this.props.message[0] !== "" && this.props.message !== "") {
 
       console.log(this.props.message);
@@ -43,8 +64,11 @@ getTest=()=>{
       this.props.history.push('/login');
     }
     return (
-      <div className="block">
-        hii
+      <div className="testset container">
+       <form action="">
+         {questions}
+         <input type="submit" value="Submit" />
+         </form>
         </div>
     );
   }

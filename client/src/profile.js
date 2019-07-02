@@ -25,7 +25,7 @@ class profile extends Component {
 
      this.conditioncheck();
         return (
-          <div>
+          <div className="container">
        <div className="row">
          <div className="col-md-11">
                 <h1 style={{textAlign: "center",color: "white"}}>
@@ -44,9 +44,10 @@ class profile extends Component {
                 <div className="col-md-6">
                   <h3>name: {username}</h3>
                   <h3>email: {email}</h3>
-                </div>
 
 <Link to='/test'><button>Start Test</button></Link>
+                </div>
+
 
   </div>
 

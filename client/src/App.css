@@ -56,3 +56,7 @@ Link{
   display: flex;
   list-style: none;
 }
+.option-set{
+  display: flex;
+  flex-direction: column;
+}

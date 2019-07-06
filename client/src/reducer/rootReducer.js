@@ -17,7 +17,7 @@ switch(action.type){
     case "login":localStorage.setItem('token',action.payload.token); return{...state,user:[action.payload.user],token:[action.payload.token],message:action.payload.message}
     case "clear": return{...state,message:[action.payload]}
     case "logout": localStorage.removeItem('token'); return{...state,user:[],message:"",token:null}
-    case "score": return{...state,correctAnswer:action.payload.correctAnswer,notAnswered:action.payload.notAnswered,incorrectAnswer:action.payload.incorrectAnswer}
+    case "score":  return{...state,correctAnswer:action.payload.correctAnswer,notAnswered:action.payload.notAnswered,incorrectAnswer:action.payload.incorrectAnswer}
     default: return state;
 }
 }

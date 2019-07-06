@@ -1,7 +1,8 @@
 import React ,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import avatar from './images/download.png'
+import avatar from './images/download.png';
+import Navbar from './components/navbar';
 var email,username;
 class profile extends Component {
  
@@ -25,19 +26,11 @@ class profile extends Component {
 
      this.conditioncheck();
         return (
-          <div className="container">
-       <div className="row">
-         <div className="col-md-11">
-                <h1 style={{textAlign: "center",color: "white"}}>
-                 WELCOME 
-                </h1>
-                </div>
-                <div className="col-md-1">
-   <button onClick={()=>this.props.logout()}>Logout</button>
-
-</div>
-<div>
-<div className="row">
+          <div>   
+               <Navbar />
+                   <div className="container">
+         
+<div className="row"  style={{marginTop:"20px"}}>
 <div className="col-md-6">
   <img alt="user" src={avatar} width="200" height="200"/>
   </div>
@@ -52,9 +45,10 @@ class profile extends Component {
   </div>
 
   </div>
-            </div>    
-            </div>    
-        
+         
+           
+  </div>
+       
         )
     }
 
@@ -64,8 +58,7 @@ class profile extends Component {
 
 
 function mapStateToProps(state){
-  console.log("profile");
-    console.log(state);
+
     return {
         user:state.user[0],
         token:state.token

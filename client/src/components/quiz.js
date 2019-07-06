@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import Navbar from './navbar';
 class Quiz extends Component {
 
   state = {
@@ -55,9 +55,11 @@ class Quiz extends Component {
       notAnswered:notanswered
     }
  this.props.sendScore(data);
- let counter = setInterval(()=>{
-  this.props.history.push('/chart');
- }, 3000);
+ this.props.history.push('/chart');
+//  let counter = setInterval(()=>{
+//   alert("setinterval"); 
+//   this.props.history.push('/chart');
+//  }, 5000);
   }
   getTest = () => {
     const token = localStorage.getItem('token');
@@ -83,8 +85,7 @@ class Quiz extends Component {
     this.getTest();
   }
   render() {
-    var questions
-
+    var questions;
     if (this.state.testset) {
       var i = 0;
       questions = this.state.testset.map(question => {
@@ -117,11 +118,18 @@ class Quiz extends Component {
       this.props.history.push('/login');
     }
     return (
+      <div>
+        <Navbar />
       <div className="testset container">
+     <div className="row">
+     <div className="col-md-12"  style={{marginTop:"20px"}}>
         <form action="">
           {questions}
           <input type="submit" value="Submit" onClick={(event) => { this.checkResult(event) }} />
         </form>
+      </div>
+      </div>
+      </div>
       </div>
     );
   }

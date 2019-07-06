@@ -1,6 +1,35 @@
 html,body,.App{
   background: black;
 }
+.navbar{
+  background-color:blueviolet;
+}
+.logo,.nav-item{
+  color: white;
+  font-family: Verdana, Geneva, sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 26px
+}
+.nav-item{
+  font-size: 20px;
+}
+.logo:hover,.nav-item:hover{
+  color:white;
+  cursor: pointer;
+}
+.nav-list{
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+
+}
+.nav-item{
+  list-style: none;
+}
+.link:hover{
+  text-decoration: none;
+}
 h3{
   color:white;
 }

@@ -2,21 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Chart } from "react-google-charts";
-
+import Navbar from './navbar';
 
 class Charts extends Component {
 
-    
-    componentWillMount() {
-  
-      this.props.get();
-  
-    }
-  
-    render() {
-        var correctAnswer=this.props.correctAnswer;
-        var incorrectAnswer=this.props.incorrectAnswer;
-        var notAnswered=this.props.notAnswered;
+    conditionCheck=()=>{
       if (this.props.message[0] !== "" && this.props.message !== "") {
   
         console.log(this.props.message);
@@ -26,8 +16,32 @@ class Charts extends Component {
       if (!this.props.token) {
         this.props.history.push('/login');
       }
+    }
+    componentWillMount() {
+  
+      this.props.get();
+  if(this.props.correctAnswer===0 && this.props.incorrectAnswer===0 && this.props.notAnswered===0){
+
+    this.props.history.push('/profile'); 
+  }
+    }
+  
+    render() {
+        var correctAnswer=this.props.correctAnswer;
+        var incorrectAnswer=this.props.incorrectAnswer;
+        var notAnswered=this.props.notAnswered;
+     
       return (
+        <div>
+          <Navbar />
         <div className="testset container">
+      <div className="row">
+     <div className="col-md-10">Your Scores </div>
+      <div className="col-md-2"><Link to='/'><button>Go back to Home</button></Link></div>
+     
+     </div>       
+   <div className="row">
+     <div className="col-md-6">
       <Chart
   width={'500px'}
   height={'300px'}
@@ -47,6 +61,14 @@ class Charts extends Component {
   }}
   rootProps={{ 'data-testid': '2' }}
 />
+</div>
+<div className="col-md-6">
+ <h2>Correct Answers: {correctAnswer} </h2>
+ <h2>InCorrect Answers: {incorrectAnswer} </h2>
+ <h2>Not Answered: {notAnswered} </h2>
+  </div>
+    </div>
+        </div>
         </div>
       );
     }

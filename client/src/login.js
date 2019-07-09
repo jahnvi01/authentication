@@ -32,16 +32,20 @@ this.props.login(post);
 
     this.props.get();
   }
-  render() {
+  conditioncheck=()=>{
     if(this.props.message[0]!=="" && this.props.message!==""){
-   this.setState({visible:true,message:this.props.message});
-      console.log(this.props.message);
-  this.props.clear();
-
-    }
-    if(this.props.token){
-      this.props.history.push('/profile');
-      }
+      this.setState({visible:true,message:this.props.message});
+         console.log(this.props.message);
+     this.props.clear();
+   
+       }
+       if(this.props.token){
+         this.props.history.push('/profile');
+         }
+      
+  }
+  render() {
+this.conditioncheck();
       return (
     <div>
          {this.state.visible ? (

@@ -89,7 +89,8 @@ router.post('/signin',(req, res) => {
     .then(user=>{
         if(user){
               res.json({
-          
+                token:null,
+                user:null,
                 message: "user already exists! try again"
             })
         }
@@ -103,7 +104,8 @@ router.post('/signin',(req, res) => {
                 bcrypt.hash(newUSer.password, salt, (err, hash) => {
                     if (err)  {
                     res.json({
-                       
+                        token:null,
+                        user:null,
                         message: "invalid data! try again"
                     }
                     )

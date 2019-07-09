@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Link,withRouter } from 'react-router-dom';
+import 'antd/dist/antd.css';
+import { Alert } from 'antd';
 class reg extends Component {
- 
+  state = {
+    visible: false,
+    message:""
+  };
   handleDetail=(event)=>{
     event.preventDefault();
     var username=document.getElementById('user-input').value;
@@ -18,25 +23,37 @@ class reg extends Component {
     this.props.signin(post);
       }
       else{
-        alert("fill up all the fields");
+        this.setState({visible:true,message:"please fill up all the fields"});
       }
     }
       componentWillMount(){
         this.props.get();
       }
-    
-  render() {
-    if(this.props.message[0]!=="" && this.props.message!==""){
-   
-      console.log("console" + this.props.message);
-  this.props.clear();
-
+    conditioncheck=()=>{
+      if(this.props.message[0]!=="" && this.props.message!==""){
+        this.setState({visible:true,message:this.props.message});
+           console.log(this.props.message);
+       this.props.clear();
+     
+         }
+        if(this.props.token){
+        this.props.history.push('/profile');
+        }
+        
     }
-    if(this.props.token){
-      this.props.history.push('/profile');
-      }
-      
+  render() {
+this.conditioncheck();
       return (
+        <div>
+                 {this.state.visible ? (
+          <Alert
+            message={this.state.message}
+            type="success"
+            closable
+            afterClose={this.handleClose}
+          />
+        ) : null}
+      
         <div className="block">
         <div className="row log">
             <div className="col-md-12 log-card">
@@ -57,7 +74,7 @@ class reg extends Component {
         <Link to="/"><p id="new">Already have an account? Login here.</p></Link>
         </form>
              </div>
-          
+             </div>
             </div>
 
         </div>
@@ -89,6 +106,9 @@ class reg extends Component {
         return fetch('/api/info',config)
         .then(res=>res.json())
         .then(data=>dispatch({type:"get",payload:data}))
+      },
+      clear:()=>{
+        dispatch({type:"clear",payload:""})
       },
       signin:(user)=>{
         console.log("in signin");

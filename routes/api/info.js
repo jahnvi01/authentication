@@ -27,7 +27,8 @@ router.post('/login',(req, res) => {
       .then(user=>{
           if(!user){
                 res.json({
-                
+                    token:null,
+                    user:null,
                   message: "user is not registered"
               })
           }
@@ -39,7 +40,10 @@ const username=user.username;
 
             bcrypt.compare(password,user.password)
             .then(isMatch=>{
-                if(!isMatch) return res.json({message: "invalid password"});
+                if(!isMatch) return res.json({
+                    token:null,
+                    user:null,
+                    message: "invalid password"});
                 jwt.sign({email,username,password},'secretkey',(err,token)=>{
                     if (err) throw err;
                

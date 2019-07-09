@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
+import 'antd/dist/antd.css';
+import { Alert } from 'antd';
 class log extends Component {
   
+  state = {
+    visible: false,
+    message:""
+  };
+  handleClose = () => {
+    this.setState({ visible: false });
+  };
 
   getDetail=(event)=>{
     event.preventDefault();
@@ -16,7 +25,7 @@ var post={
 this.props.login(post);
 
 }else{
-  alert("please fill up all the fields");
+  this.setState({visible:true,message:"please fill up all the fields "})
 }
   }
   componentWillMount(){
@@ -25,7 +34,7 @@ this.props.login(post);
   }
   render() {
     if(this.props.message[0]!=="" && this.props.message!==""){
-   
+   this.setState({visible:true,message:this.props.message});
       console.log(this.props.message);
   this.props.clear();
 
@@ -34,7 +43,17 @@ this.props.login(post);
       this.props.history.push('/profile');
       }
       return (
-        <div className="block">
+    <div>
+         {this.state.visible ? (
+          <Alert
+            message={this.state.message}
+            type="success"
+            closable
+            afterClose={this.handleClose}
+          />
+        ) : null}
+         <div className="block">
+    
         <div className="row log">
             <div className="col-md-12 log-card">
                 <h4 id="log-title">Member Login </h4>
@@ -54,7 +73,7 @@ this.props.login(post);
           
              
             </div>
-
+</div>
         </div>
       );
     }

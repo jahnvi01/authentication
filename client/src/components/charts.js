@@ -14,7 +14,7 @@ class Charts extends Component {
   
       }
       if (!this.props.token) {
-        this.props.history.push('/login');
+        this.props.history.push('/');
       }
     }
     componentWillMount() {

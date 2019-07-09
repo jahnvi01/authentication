@@ -1,5 +1,5 @@
 html,body,.App{
-  background: black;
+  background: black !important;
 }
 .navbar{
   background-color:blueviolet;
@@ -81,6 +81,12 @@ Link{
   align-self: center;
   justify-content: center;
 }
+.btn{
+  color: rgb(119, 53, 53);
+  background: blueviolet;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+}
 .options{
   display: flex;
   list-style: none;
@@ -88,4 +94,7 @@ Link{
 .option-set{
   display: flex;
   flex-direction: column;
+}
+.option-check{
+  margin: 5px;
 }

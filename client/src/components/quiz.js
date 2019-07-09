@@ -115,7 +115,7 @@ class Quiz extends Component {
 
     }
     if (!this.props.token) {
-      this.props.history.push('/login');
+      this.props.history.push('/');
     }
     return (
       <div>
@@ -125,7 +125,7 @@ class Quiz extends Component {
      <div className="col-md-12"  style={{marginTop:"20px"}}>
         <form action="">
           {questions}
-          <input type="submit" value="Submit" onClick={(event) => { this.checkResult(event) }} />
+          <input type="submit" value="Submit" className="btn" onClick={(event) => { this.checkResult(event) }} />
         </form>
       </div>
       </div>

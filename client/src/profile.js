@@ -7,13 +7,14 @@ var email,username;
 class profile extends Component {
  
    conditioncheck=()=>{
+    
     if(this.props.user){
     
      email=this.props.user.email;
      username=this.props.user.username;
     }
    if(!this.props.token){
-
+    console.log("condition");
       this.props.history.push('/');
    }
    }

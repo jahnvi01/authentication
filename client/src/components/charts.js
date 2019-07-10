@@ -35,9 +35,9 @@ class Charts extends Component {
         <div>
           <Navbar />
         <div className="testset container">
-      <div className="row">
-     <div className="col-md-10">Your Scores </div>
-      <div className="col-md-2"><Link to='/'><button>Go back to Home</button></Link></div>
+      <div className="row charts">
+     <div className="col-md-10"><h4 className="chart-title">  Your Scores</h4> </div>
+      <div className="col-md-2"><Link to='/'><button className="btn">Go back to Home</button></Link></div>
      
      </div>       
    <div className="row">
@@ -63,7 +63,7 @@ class Charts extends Component {
 />
 </div>
 <div className="col-md-6">
- <h2>Correct Answers: {correctAnswer} </h2>
+ <h2 className="">Correct Answers: {correctAnswer} </h2>
  <h2>InCorrect Answers: {incorrectAnswer} </h2>
  <h2>Not Answered: {notAnswered} </h2>
   </div>

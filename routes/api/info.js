@@ -95,13 +95,13 @@ router.post('/signin',(req, res) => {
             })
         }
         else{
-            const newUSer=new userchar({
+            const newUser=new userchar({
                 email,username,password
             });
 
             bcrypt.genSalt(10, (err, salt) => {
 
-                bcrypt.hash(newUSer.password, salt, (err, hash) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
                     if (err)  {
                     res.json({
                         token:null,
@@ -110,10 +110,10 @@ router.post('/signin',(req, res) => {
                     }
                     )
                     };
-                    newUSer.password= hash;
+                    newUser.password= hash;
 
-                    jwt.sign({ newUSer }, 'secretkey', (err, token) => {
-                        newUSer.save()
+                    jwt.sign({ newUser }, 'secretkey', (err, token) => {
+                        newUser.save()
                         .then(user=>{
                             res.json({
                                 token,

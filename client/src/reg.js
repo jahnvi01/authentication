@@ -21,6 +21,7 @@ class reg extends Component {
     }
 
     this.props.signin(post);
+
       }
       else{
         this.setState({visible:true,message:"please fill up all the fields"});
@@ -84,6 +85,7 @@ this.conditioncheck();
   
 
   function mapStateToProps(state){
+    console.log(state);
     return {users:state.users,
       user:state.user,
       token:state.token,

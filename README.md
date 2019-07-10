@@ -3,9 +3,15 @@
 2)log-in page to access account
 3)home page with logout functionality
 
-To run locally
+
+To run locally on your PC:
+
 1) npm install
+
 2)cd client
+
 3)npm install
+
 4)cd ..
+
 5)npm run dev

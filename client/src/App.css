@@ -21,15 +21,13 @@ html,body,.App{
 .nav-list{
   display: flex;
   justify-content: space-around;
-  align-items: center
-
-}
-.nav-item{
+  align-items: center;
   list-style: none;
 }
 .link:hover{
   text-decoration: none;
 }
+
 h3{
   color:white;
 }

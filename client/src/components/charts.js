@@ -75,15 +75,15 @@ class Charts extends Component {
   }
   
   function mapStateToProps(state) {
-    console.log(state);
+    console.log(state.user);
     return {
-      users: state.users,
-      user: state.user,
-      token: state.token,
-      message: state.message,
-      notAnswered:state.notAnswered,
-      incorrectAnswer:state.incorrectAnswer,
-        correctAnswer:state.correctAnswer
+      users: state.user.users,
+      user: state.user.user,
+      token: state.user.token,
+      message: state.user.message,
+      notAnswered:state.user.notAnswered,
+      incorrectAnswer:state.user.incorrectAnswer,
+        correctAnswer:state.user.correctAnswer
     }
   }
   function mapDispatchToStates(dispatch) {

@@ -136,12 +136,12 @@ class Quiz extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  console.log(state.user);
   return {
-    users: state.users,
-    user: state.user,
-    token: state.token,
-    message: state.message
+    users: state.user.users,
+    user: state.user.user,
+    token: state.user.token,
+    message: state.user.message
 
   }
 }

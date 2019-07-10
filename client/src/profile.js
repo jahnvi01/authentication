@@ -61,8 +61,8 @@ class profile extends Component {
 function mapStateToProps(state){
 
     return {
-        user:state.user[0],
-        token:state.token
+        user:state.user.user[0],
+        token:state.user.token
     }
   }
   function mapDispatchToStates(dispatch){

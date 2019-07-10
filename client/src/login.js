@@ -84,11 +84,11 @@ this.conditioncheck();
   }
 
   function mapStateToProps(state){
-    console.log(state);
-    return {users:state.users,
-      user:state.user,
-      token:state.token,
-       message:state.message     
+    console.log(state.user);
+    return {users:state.user.users,
+      user:state.user.user,
+      token:state.user.token,
+       message:state.user.message     
     
     }
   }

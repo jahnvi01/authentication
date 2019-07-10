@@ -7,7 +7,7 @@ var initState={
     incorrectAnswer:0
 }
 
-const rootReducer =(state=initState,action)=>{
+const userReducer =(state=initState,action)=>{
 console.log(action.payload);
 // //var currentColor = localStorage.getItem('token');
 //console.log(currentColor);
@@ -21,4 +21,4 @@ switch(action.type){
     default: return state;
 }
 }
-export default rootReducer;
+export default userReducer;

@@ -21,9 +21,9 @@ class Admin_login extends Component {
     var user=document.getElementById('user-input').value;
     var password=document.getElementById('password-input').value;
     if(user && password){
- 
+
       if(user==="admin" && password==="admin"){
-        this.props.history.push('/profile');
+      this.props.admin_login();
       }
     else{
       this.setState({visible:true,message:"incorrect credentials"})
@@ -34,20 +34,13 @@ class Admin_login extends Component {
       this.setState({visible:true,message:"please fill up all the fields "})
     }
       }
-      componentWillMount(){
-    
-       // this.props.get();
-      }
+     
       conditioncheck=()=>{
-        // if(this.props.message[0]!=="" && this.props.message!==""){
-        //   this.setState({visible:true,message:this.props.message});
-        //      console.log(this.props.message);
-        //  this.props.clear();
+    
+        if(this.props.access_verified===true){
+          this.props.history.push('/admin_home');
+          }
        
-        //    }
-        //    if(this.props.token){
-        //      this.props.history.push('/profile');
-        //      }
           
       }
       render() {
@@ -90,8 +83,10 @@ class Admin_login extends Component {
   }
   
   function mapStateToProps(state) {
-    console.log(state.admin);
+  
     return {
+      access_verified:state.admin.access_verified
+     
       // users: state.users,
       // user: state.user,
       // token: state.token,
@@ -120,9 +115,9 @@ class Admin_login extends Component {
       //     .then(data => dispatch({ type: "get", payload: data }))
       // },
   
-      // clear: () => {
-      //   dispatch({ type: "clear", payload: "" })
-      // },
+      admin_login: () => {
+        dispatch({ type: "admin_login", payload: "" })
+      },
     
   
     }

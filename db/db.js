@@ -47,7 +47,10 @@ const subjectschema=new Schema({
 
 
 const pollschema=new Schema({
-   
+   subject:{
+    type:String,
+    required:true,
+   },
     question:{
         type:String,
         required:true,

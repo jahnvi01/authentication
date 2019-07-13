@@ -9,6 +9,7 @@ var initState={
 
 const userReducer =(state=initState,action)=>{
 console.log(action.payload);
+console.log(state);
 // //var currentColor = localStorage.getItem('token');
 //console.log(currentColor);
 switch(action.type){

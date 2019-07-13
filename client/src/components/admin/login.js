@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 import { Alert } from 'antd';
-
+import Navbar from '../navbar';
 
 class Admin_login extends Component {
 
@@ -15,7 +15,11 @@ class Admin_login extends Component {
       handleClose = () => {
         this.setState({ visible: false });
       };
+      componentWillMount() {
+
+        this.props.get();
     
+      }
       getDetail=(event)=>{
         event.preventDefault();
     var user=document.getElementById('user-input').value;
@@ -36,10 +40,15 @@ class Admin_login extends Component {
       }
      
       conditioncheck=()=>{
-    
-        if(this.props.access_verified===true){
-          this.props.history.push('/admin_home');
-          }
+    if(this.props.token){
+      if(this.props.access_verified===true){
+        this.props.history.push('/admin_home');
+        }
+        
+    }
+     else{
+      this.props.history.push('/');
+     }
        
           
       }
@@ -47,6 +56,7 @@ class Admin_login extends Component {
     this.conditioncheck();
           return (
         <div>
+          <Navbar />
              {this.state.visible ? (
               <Alert
                 message={this.state.message}
@@ -85,11 +95,11 @@ class Admin_login extends Component {
   function mapStateToProps(state) {
   
     return {
-      access_verified:state.admin.access_verified
+      access_verified:state.admin.access_verified,
      
       // users: state.users,
-      // user: state.user,
-      // token: state.token,
+      user: state.user.user,
+      token: state.user.token,
       // message: state.message,
       // notAnswered:state.notAnswered,
       // incorrectAnswer:state.incorrectAnswer,
@@ -99,21 +109,21 @@ class Admin_login extends Component {
   function mapDispatchToStates(dispatch) {
   
     return {
-      // get: () => {
-      //   const token = localStorage.getItem('token');
+      get: () => {
+        const token = localStorage.getItem('token');
   
-      //   const config = {
-      //     headers: {
-      //       "content-type": "application/json"
-      //     }
-      //   }
-      //   if (token) {
-      //     config.headers['x-auth-token'] = token;
-      //   }
-      //   return fetch('/api/info', config)
-      //     .then(res => res.json())
-      //     .then(data => dispatch({ type: "get", payload: data }))
-      // },
+        const config = {
+          headers: {
+            "content-type": "application/json"
+          }
+        }
+        if (token) {
+          config.headers['x-auth-token'] = token;
+        }
+        return fetch('/api/info', config)
+          .then(res => res.json())
+          .then(data => dispatch({ type: "get", payload: data }))
+      },
   
       admin_login: () => {
         dispatch({ type: "admin_login", payload: "" })

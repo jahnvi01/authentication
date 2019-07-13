@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import 'antd/dist/antd.css';
-import { Alert } from 'antd';
-
+import AdminNavbar from './admin_navbar';
 
 class AdminHome extends Component {
 
 
    
       componentDidUpdate(){
-        console.log("condition"+this.props.access_verified);
+     
         if(this.props.access_verified===false){
           this.props.history.push('/admin_login');
           }
@@ -31,8 +29,8 @@ class AdminHome extends Component {
             
              <div className="admin">
         
-       <h5> hellooo </h5>             
-                 <button onClick={()=>{this.props.logout()}}>Logout</button>
+  <AdminNavbar />           
+                
             </div>
          
           );
@@ -71,12 +69,7 @@ console.log(state.admin)
       //     .then(data => dispatch({ type: "get", payload: data }))
       // },
   
-      admin_login: () => {
-        dispatch({ type: "admin_login", payload: "" })
-      },
-      logout: () => {
-        dispatch({ type: "admin_logout", payload: "" })
-      },
+   
   
     }
   }

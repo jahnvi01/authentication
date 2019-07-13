@@ -8,7 +8,7 @@ mongoose.connect('mongodb://localhost/vote',{useCreateIndex:true,useNewUrlParser
 .then(()=>{console.log("mongo connected")})
 .catch (error=()=>{
     console.log(error);
-}) ;
+});
 const Schema=mongoose.Schema;
 const userschema=new Schema({
     email:{
@@ -30,6 +30,19 @@ const userschema=new Schema({
 });
 
 
+
+
+
+const subjectschema=new Schema({
+   
+    subject:{
+        type:String,
+        required:true,
+        unique:true
+    },
+
+    
+});
 
 
 
@@ -67,4 +80,5 @@ const pollschema=new Schema({
 
  const userchar=mongoose.model('userchar',userschema);
  const pollchar=mongoose.model('pollchar',pollschema);
- module.exports={userchar,pollchar};
+ const subjectchar=mongoose.model('subjectchar',subjectschema);
+ module.exports={userchar,pollchar,subjectchar};

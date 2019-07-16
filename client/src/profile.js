@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import avatar from './images/download.png';
 import Navbar from './components/navbar';
+import Test from './components/subjects';
 var email,username;
 class profile extends Component {
  
@@ -17,10 +18,11 @@ class profile extends Component {
     console.log("condition");
       this.props.history.push('/');
    }
+ 
    }
    componentDidMount(){
     this.props.get();
- 
+ this.props.getSubjects();
    }
     render(){
    
@@ -32,19 +34,23 @@ class profile extends Component {
                    <div className="container">
          
 <div className="row"  style={{marginTop:"20px"}}>
-<div className="col-md-6">
-  <img alt="user" src={avatar} width="200" height="200"/>
+<div className="col-md-4">
+  <img alt="user" src={avatar} width="150" height="150"/>
   </div>
-                <div className="col-md-6">
+                <div className="col-md-8" style={{    alignSelf: "center"}}>
                   <h3>name: {username}</h3>
                   <h3>email: {email}</h3>
-
-<Link to='/test'><button>Start Test</button></Link>
+                
                 </div>
 
-
+               
   </div>
-
+  <div className="row"  style={{marginTop:"20px"}}>
+<div className="col-md-12 testlist">
+  <h3>Choose Any Test</h3>
+<Test />
+</div>
+</div>
   </div>
          
            
@@ -59,10 +65,11 @@ class profile extends Component {
 
 
 function mapStateToProps(state){
-
+//console.log(state.admin.subjects);
     return {
         user:state.user.user[0],
-        token:state.user.token
+        token:state.user.token,
+
     }
   }
   function mapDispatchToStates(dispatch){
@@ -81,6 +88,19 @@ function mapStateToProps(state){
         return fetch('/api/info',config)
         .then(res=>res.json())
         .then(data=>dispatch({type:"get",payload:data}))
+      },
+      getSubjects:()=>{
+       
+  
+        const config={
+          headers:{
+            "content-type": "application/json",
+          }
+        } 
+       
+        return fetch('/api/test/subjects',config)
+        .then(res=>res.json())
+        .then(data=>dispatch({type:"getsubjects",payload:data}))
       },
       logout:()=>{
         dispatch({type:"logout",payload:""})

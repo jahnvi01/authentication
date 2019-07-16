@@ -4,17 +4,44 @@ html,body,.App{
 .navbar{
   background-color:blueviolet;
 }
-.logo,.nav-item{
+.subject
+{
+ width: 50%;
+  display: flex;
+  list-style: none;
+  color: white;
+}
+.subject-name{
+  margin-right: auto;
+}
+
+.logo,.nav-item,.test{
   color: white;
   font-family: Verdana, Geneva, sans-serif;
   font-style: italic;
   font-weight: bold;
   font-size: 26px
 }
+.subject-list{
+  display: flex;
+  justify-content: center;
+  margin-top: 7%;
+}
+.testlist{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+.test{
+  font-size: 16px;
+  }
+  
 .nav-item{
   font-size: 20px;
 }
-.logo:hover,.nav-item:hover{
+.logo:hover,.nav-item:hover,.test:hover{
   color:white;
   cursor: pointer;
 }

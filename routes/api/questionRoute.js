@@ -7,7 +7,10 @@ const char=require('../../db/db');
 const pollchar=char.pollchar;
 const subjectchar=char.subjectchar;
 const auth=require('./config');
-router.get('/subject/:subject',(req, res) => {
+
+
+
+router.get('/subject/:subject',auth,(req, res) => {
 var subject=req.params.subject;
   pollchar.find({subject})
   .then(testset=>{
@@ -17,8 +20,6 @@ var subject=req.params.subject;
   })
 
 });
-
-
 
 router.post('/addquestion',(req, res) => {
 
@@ -117,9 +118,11 @@ router.get('/subjects',(req, res) => {
 
 });
 
+
+// check for errors in name
 router.post('/addsub',(req, res) => {
 
-    var  subject= req.body.subject||"physics";
+    var  subject= req.body.subject||"maths";
       subjectchar.findOne({subject})
       .then(sub=>{
           if(sub){
@@ -154,13 +157,18 @@ router.post('/addsub',(req, res) => {
           subjectchar.findOne({_id})
           .then(sub=>{
               if(sub){
+              var  subject=sub.subject;
                 subjectchar.remove({_id})
-                 .then( subject=>{  res.json({
-                    
-                      message: sub.subject+" deleted"
-                
-                    })
-                  }
+                 .then(
+                  pollchar.remove({subject})
+                  .then( set=>{  res.json({
+                     
+                        message:"successfully deleted"
+                 
+                     })
+                   }
+                  )
+            
                  )
                 }
               else{

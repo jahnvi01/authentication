@@ -32,7 +32,6 @@ class Quiz extends Component {
     for (var i = 0; i < answers.length; i++) {
       var correctoption = this.state.answers[i];
       var options = answers[i].childNodes;
-      //  console.log(options[2]);
       for (var j = 0; j < options.length; j++) {
         if (options[j].childNodes[0].checked === true) {
           console.log(options[j].childNodes[0].value);
@@ -56,10 +55,6 @@ class Quiz extends Component {
     }
  this.props.sendScore(data);
  this.props.history.push('/chart');
-//  let counter = setInterval(()=>{
-//   alert("setinterval"); 
-//   this.props.history.push('/chart');
-//  }, 5000);
   }
   getTest = () => {
     const token = localStorage.getItem('token');
@@ -71,7 +66,7 @@ class Quiz extends Component {
       }
     }
 
-    return fetch('/api/test', config)
+    return fetch(`/api/test/subject/${this.props.test}`, config)
       .then(res => res.json())
       .then(data => this.setState({ testset: data.testset }));
 
@@ -136,13 +131,13 @@ class Quiz extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.user);
+  console.log(state.admin);
   return {
     users: state.user.users,
     user: state.user.user,
     token: state.user.token,
-    message: state.user.message
-
+    message: state.user.message,
+    test:state.admin.test
   }
 }
 function mapDispatchToStates(dispatch) {

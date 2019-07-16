@@ -8,8 +8,8 @@ var initState={
 }
 
 const userReducer =(state=initState,action)=>{
-console.log(action.payload);
-console.log(state);
+// console.log(action.payload);
+// console.log(state);
 // //var currentColor = localStorage.getItem('token');
 //console.log(currentColor);
 switch(action.type){
@@ -19,6 +19,7 @@ switch(action.type){
     case "clear": return{...state,message:[action.payload]}
     case "logout": localStorage.removeItem('token'); return{...state,user:[],message:"",token:null}
     case "score":  return{...state,correctAnswer:action.payload.correctAnswer,notAnswered:action.payload.notAnswered,incorrectAnswer:action.payload.incorrectAnswer}
+ 
     default: return state;
 }
 }

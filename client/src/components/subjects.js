@@ -21,7 +21,7 @@ subjects=subjects.map(subject=>{
         <li key={subject._id} className="subject">
         <h3 className="subject-name">{subject.subject}
         </h3>
-        <button className="btn" onClick={()=>{this.handletest(subject.subject)}}>Start Subjects</button>
+        <button className="btn" onClick={()=>{this.handletest(subject.subject)}}>Start Test</button>
         </li>
     )
       
@@ -63,10 +63,12 @@ function mapStateToProps(state){
    
       getSubjects:()=>{
        
-  
+        const token = localStorage.getItem('token');
+        console.log(token);
         const config={
           headers:{
             "content-type": "application/json",
+            "x-auth-token": token
           }
         } 
        

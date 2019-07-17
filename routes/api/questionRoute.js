@@ -107,7 +107,7 @@ var  subject=req.body.subject;
 
 
 
-router.get('/subjects',(req, res) => {
+router.get('/subjects',auth,(req, res) => {
 
   subjectchar.find({})
   .then(subjects=>{

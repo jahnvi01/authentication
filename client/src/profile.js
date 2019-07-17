@@ -90,11 +90,12 @@ function mapStateToProps(state){
         .then(data=>dispatch({type:"get",payload:data}))
       },
       getSubjects:()=>{
-       
+        const token=localStorage.getItem('token');
   
         const config={
           headers:{
             "content-type": "application/json",
+            "x-auth-token": token
           }
         } 
        

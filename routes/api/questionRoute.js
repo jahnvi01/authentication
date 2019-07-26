@@ -158,6 +158,57 @@ router.post('/',(req, res) => {
   
 
 
+
+
+
+
+
+
+
+
+
+      router.post('/addsubject',(req, res) => {
+        console.log(req.body)
+        var  subject=req.body.subject;
+        subjectchar.findOne({subject})
+            .then(set=>{
+                if(set){
+                      res.json({
+                      
+                        message: "subject already exists"
+                    })
+                }
+                else{
+                  const newsub=new subjectchar({
+                    subject
+                 });
+                  newsub.save()
+                  .then(sub=>{
+                      res.json({
+                       sub
+                                    });
+                  })
+        
+                }
+              
+            })
+        
+                }
+            );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       router.delete('/:id',(req, res) => {
         var  _id= req.params.id;
           subjectchar.findOne({_id})
@@ -168,8 +219,7 @@ router.post('/',(req, res) => {
                  .then(
                   pollchar.remove({subject})
                   .then( set=>{  res.json({
-                     id:_id,
-                        message:"successfully deleted"
+                     id:_id
                  
                      })
                    }

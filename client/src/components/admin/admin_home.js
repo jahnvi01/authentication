@@ -133,19 +133,19 @@ console.log(state.admin)
    addSubject:(subject)=>{
     console.log(subject);
     //'/api/test/addsub/'+subject
-    return fetch('/api/test',{
+    return fetch('/api/test/addsubject',{
       method: "post",
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
-      },body:JSON.stringify(subject)})
-    
-    .then(response=>dispatch({type:"addsubject",payload:response}))
+      },body:JSON.stringify({subject})})
+      .then(res=>res.json())
+    .then(response=>dispatch({type:"addsubject",payload:response.sub}))
     },
     deleteSubject:(id)=>{
         console.log(id);
         return fetch('/api/test/'+id,{method:"delete"})
-       
+        .then(res=>res.json())
         .then(response=>dispatch({type:"deletesubject",payload:response.id}))
         
     }

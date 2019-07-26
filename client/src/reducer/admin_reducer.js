@@ -12,7 +12,7 @@ switch(action.type){
        case "admin_logout": localStorage.removeItem('admin_access'); return{...state,access_verified:false}
        case "getsubjects": return {...state,subjects:action.payload.subjects}
         case "chooseSubject":  localStorage.setItem('test',action.payload);return{...state,test:action.payload}
-        case "addsubject" :return{...state}
+        case "addsubject" :return{...state,subjects:[action.payload,...state.subjects]}
         case "deletesubject":
     return {...state,
         subjects:state.subjects.filter(subject=>subject._id!==action.payload)    

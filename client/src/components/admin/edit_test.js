@@ -99,10 +99,10 @@ componentWillMount(){
           </div>
           <div>
             <ul className="row option-set">
-              <li className="options"><input className="option-check" onClick={(event) => { this.handlecheck(event, i - 1) }} type="checkbox" value={question.opt1} />{question.opt1}</li>
-              <li className="options"><input className="option-check" onClick={(event) => { this.handlecheck(event, i - 1) }} type="checkbox" value={question.opt2} />{question.opt2}</li>
-              <li className="options"><input className="option-check" onClick={(event) => { this.handlecheck(event, i - 1) }} type="checkbox" value={question.opt3} />{question.opt3}</li>
-              <li className="options"><input className="option-check" onClick={(event) => { this.handlecheck(event, i - 1) }} type="checkbox" value={question.opt4} />{question.opt4}</li>
+              <li className="options"><input className="option-check" type="checkbox" value={question.opt1} />{question.opt1}</li>
+              <li className="options"><input className="option-check"  type="checkbox" value={question.opt2} />{question.opt2}</li>
+              <li className="options"><input className="option-check" type="checkbox" value={question.opt3} />{question.opt3}</li>
+              <li className="options"><input className="option-check" type="checkbox" value={question.opt4} />{question.opt4}</li>
             </ul>
           </div>
 

@@ -22,7 +22,7 @@ var subject=req.params.subject;
 });
 
 router.post('/addquestion',(req, res) => {
-
+console.log(req.body)
 var  subject=req.body.subject;
   var  question=req.body.question;
   var  opt1=req.body.opt1;
@@ -45,7 +45,7 @@ var  subject=req.body.subject;
           newset.save()
           .then(set=>{
               res.json({
-                set
+               set
                             });
           })
 
@@ -70,7 +70,7 @@ var  subject=req.body.subject;
              
               pollchar.remove({_id})
                .then( set=>{  res.json({
-                  
+                  id:_id,
                      message:"successfully deleted"
               
                   })
@@ -119,10 +119,13 @@ router.get('/subjects',auth,(req, res) => {
 });
 
 
-// check for errors in name
-router.post('/addsub',(req, res) => {
+// check for errors in name /addsub/:subject
+router.post('/',(req, res) => {
 
-    var  subject= req.body.subject||"maths";
+   var  subject= req.body.subject;
+    console.log(req.body);
+    console.log("log");
+
       subjectchar.findOne({subject})
       .then(sub=>{
           if(sub){
@@ -143,7 +146,10 @@ router.post('/addsub',(req, res) => {
             })
 
           }
-        
+      // res.json({
+                
+      //               message: "success"
+      //           })
       })
 
           }
@@ -162,7 +168,7 @@ router.post('/addsub',(req, res) => {
                  .then(
                   pollchar.remove({subject})
                   .then( set=>{  res.json({
-                     
+                     id:_id,
                         message:"successfully deleted"
                  
                      })
@@ -174,8 +180,8 @@ router.post('/addsub',(req, res) => {
               else{
           
                 res.json({
-                    
                   message: "does not exist"
+                    
               })
               }
             
@@ -185,7 +191,6 @@ router.post('/addsub',(req, res) => {
           );
       
       
-  
   
   
 

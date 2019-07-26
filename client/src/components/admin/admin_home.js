@@ -28,12 +28,12 @@ class AdminHome extends Component {
       handleEdit=(subject)=>{
     
         this.props.chooseSubject(subject);
-  //  this.props.history.push('/test');
+   this.props.history.push('/edit');
       }
-      handleDelete=(subject)=>{
+      handleDelete=(id)=>{
     
-        this.props.deleteSubject(subject);
-  //  this.props.history.push('/test');
+        this.props.deleteSubject(id);
+
       }
       showSubject=()=>{
           if(this.props.subjects){
@@ -44,7 +44,7 @@ class AdminHome extends Component {
            <h3 className="subject-name">{subject.subject}
            </h3>
            <button className="btn" onClick={()=>{this.handleEdit(subject.subject)}}>Edit</button>
-           <button className="btn" style={{marginLeft: "10px"}} onClick={()=>{this.handleDelete(subject.subject)}}>Delete</button>
+           <button className="btn" style={{marginLeft: "10px"}} onClick={()=>{this.handleDelete(subject._id)}}>Delete</button>
            </li>
        )
          
@@ -52,7 +52,11 @@ class AdminHome extends Component {
           }
    return subjects;
    }
-
+addSubject=(e)=>{
+  e.preventDefault();
+  var subject=document.getElementById("subject-input").value;
+  this.props.addSubject(subject);
+}
 
       render() {
     this.conditioncheck();
@@ -64,6 +68,27 @@ class AdminHome extends Component {
   <AdminNavbar />    
 <div className="container" style={{marginTop: "3%"}}>
   <h3 className="admin-title">Admin Dashboard</h3>
+
+
+  <div className="block" style={{margin: "5%"}}>
+        
+        <div className="row log">
+            <div className="col-md-12 log-card">
+               
+                <form>
+                <div id="uname"> 
+             <input type="text" id="subject-input" placeholder="Enter subject name..." required="required" />
+             </div>
+                 <div>   <input id="log" type="submit" onClick={(event)=>{this.addSubject(event)}} value="Add Subject" /></div>
+                  </form>
+             </div>
+          
+             
+            </div>
+</div>
+
+
+
 <ul className="subject-list">
 {this.showSubject()}
 </ul>
@@ -105,18 +130,23 @@ console.log(state.admin)
     dispatch({type:"chooseSubject",payload:test})
    },
 
-   add:(item)=>{
-    console.log(item.name);
-    return fetch('/api/items',{method:"post", headers: {
+   addSubject:(subject)=>{
+    console.log(subject);
+    //'/api/test/addsub/'+subject
+    return fetch('/api/test',{
+      method: "post",
+      headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
-      },body:JSON.stringify(item)})
-    .then(response=>dispatch({type:"add",payload:item}))
+      },body:JSON.stringify(subject)})
+    
+    .then(response=>dispatch({type:"addsubject",payload:response}))
     },
     deleteSubject:(id)=>{
         console.log(id);
         return fetch('/api/test/'+id,{method:"delete"})
-        .then(response=>dispatch({type:"remove",payload:id}))
+       
+        .then(response=>dispatch({type:"deletesubject",payload:response.id}))
         
     }
   

@@ -86,7 +86,7 @@ Link{
  
   align-self: center;
 }
-#user-input,#password-input,#email-input{
+#user-input,#password-input,#email-input,#subject-input{
   width: 250px;
   height:40px;
 

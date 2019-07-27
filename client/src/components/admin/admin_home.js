@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AdminNavbar from './admin_navbar';
-
+import 'antd/dist/antd.css';
+import { Alert } from 'antd';
 class AdminHome extends Component {
-
+ state = {
+    visible: false,
+    message:""
+  };
       componentDidUpdate(){
      
         if(this.props.access_verified===false){
           this.props.history.push('/admin_login');
           }
-    
-       
+           
       }
       componentWillMount(){
         this.props.getSubjects();
@@ -22,9 +25,19 @@ class AdminHome extends Component {
            if(this.props.access_verified===false){
              this.props.history.push('/admin_login');
              }
-          
+             if(this.props.message){
+              this.setState({visible:true,message:this.props.message});
+                 console.log(this.props.message);
+             this.props.clear();
+             const timer = setTimeout(() => {
+              this.setState({visible:false,message:""});
+            }, 2000);
+               }
+         
       }
-
+      handleClose = () => {
+        this.setState({ visible: false });
+      };
       handleEdit=(subject)=>{
     
         this.props.chooseSubject(subject);
@@ -66,6 +79,14 @@ addSubject=(e)=>{
              <div className="admin">
         
   <AdminNavbar />    
+  {this.state.visible ? (
+          <Alert
+            message={this.state.message}
+            type="success"
+            closable
+            afterClose={this.handleClose}
+          />
+        ) : null}
 <div className="container" style={{marginTop: "3%"}}>
   <h3 className="admin-title">Admin Dashboard</h3>
 
@@ -106,6 +127,7 @@ console.log(state.admin)
     return {
         access_verified:state.admin.access_verified,
         subjects:state.admin.subjects,
+        message:state.admin.message
      }
   }
   function mapDispatchToStates(dispatch) {
@@ -129,7 +151,9 @@ console.log(state.admin)
    chooseSubject:(test)=>{
     dispatch({type:"chooseSubject",payload:test})
    },
-
+   clear:()=>{
+    dispatch({type:"clear",payload:""})
+  },
    addSubject:(subject)=>{
     console.log(subject);
     //'/api/test/addsub/'+subject
@@ -140,13 +164,13 @@ console.log(state.admin)
         'Content-Type': 'application/json'
       },body:JSON.stringify({subject})})
       .then(res=>res.json())
-    .then(response=>dispatch({type:"addsubject",payload:response.sub}))
+    .then(response=>dispatch({type:"addsubject",payload:response}))
     },
     deleteSubject:(id)=>{
         console.log(id);
         return fetch('/api/test/'+id,{method:"delete"})
         .then(res=>res.json())
-        .then(response=>dispatch({type:"deletesubject",payload:response.id}))
+        .then(response=>dispatch({type:"deletesubject",payload:response}))
         
     }
   

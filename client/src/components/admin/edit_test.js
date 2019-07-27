@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AdminNavbar from './admin_navbar';
-
+import 'antd/dist/antd.css';
+import { Alert } from 'antd';
 class Editquiz extends Component {
 
   state = {
     testset: null,
- 
+    message:null,
+      visible: false,
+
+    
   }
   getTest =() => {
   
@@ -37,8 +41,20 @@ class Editquiz extends Component {
       })
       .then(res=>res.json())
       // .then(data=>console.log(data))
-    .then(data=>this.setState({testset:[...this.state.testset,data.set]}))  
+    .then(data=>
+      {
+        if(data.message){
+          this.setState({message:data.message})
+       }
+       else{ 
+      this.setState({testset:[...this.state.testset,data.set]})
+       }
     }
+    )  
+    }
+
+  
+
   addquestion = (e) => {
       e.preventDefault();
 var question=document.getElementById("question").value;
@@ -68,23 +84,44 @@ handleDelete=(e,id)=>{
  
   return fetch('/api/test/question/'+id,{method:"delete"})
  .then(res=>res.json())
-  .then(response=>this.setState({
+  .then(response=>
+    
+    {
+      if(response.message){
+        this.setState({message:response.message})
+     }
+     else{ 
+    this.setState({
     testset:this.state.testset.filter(question=>question._id!==response.id)    
-}))
+})}
+    })
 
 }
 componentDidUpdate(){
+
+ 
  // this.getTest();
- console.log(this.state);
+ //console.log(this.state);
 }
 componentWillMount(){
   this.getTest();
+
   // this.setState({testset:this.props.testset});
   //  console.log(this.props.testset);
 }
+conditioncheck=()=>{
 
+  if(this.state.message){
+    this.setState({visible:true});
+       console.log(this.state.message);
+       this.setState({message:""});
+   const timer = setInterval(() => {
+    this.setState({visible:false,message:""});
+  }, 1000);
+     }  
+     }
   render() {
-    
+    this.conditioncheck();
     var questions;
     if (this.state.testset) {
       var i = 0;
@@ -110,16 +147,19 @@ componentWillMount(){
       }
       )
     }
-    if (this.props.message[0] !== "" && this.props.message !== "") {
-
-      console.log(this.props.message);
-      this.props.clear();
-
-    }
+  
  
     return (
       <div>
         <AdminNavbar />
+        {this.state.visible ? (
+          <Alert
+            message={this.state.message}
+            type="success"
+            closable
+            afterClose={this.handleClose}
+          />
+        ) : null}
       <div className="testset container">
      <div className="row">
      <div className="col-md-12"  style={{marginTop:"20px"}}>
@@ -170,12 +210,6 @@ function mapDispatchToStates(dispatch) {
 
   return {
 
-
-      
-
-    clear: () => {
-      dispatch({ type: "clear", payload: "" })
-    }
   }
 }
 

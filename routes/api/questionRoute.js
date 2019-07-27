@@ -22,7 +22,7 @@ var subject=req.params.subject;
 });
 
 router.post('/addquestion',(req, res) => {
-console.log(req.body)
+console.log(req.body);
 var  subject=req.body.subject;
   var  question=req.body.question;
   var  opt1=req.body.opt1;
@@ -34,7 +34,7 @@ var  subject=req.body.subject;
     .then(questionset=>{
         if(questionset){
               res.json({
-              
+              set:"",
                 message: "question already exists"
             })
         }
@@ -45,7 +45,8 @@ var  subject=req.body.subject;
           newset.save()
           .then(set=>{
               res.json({
-               set
+               set,
+               message:null
                             });
           })
 
@@ -55,8 +56,6 @@ var  subject=req.body.subject;
 
         }
     );
-
-
 
 
 
@@ -71,7 +70,7 @@ var  subject=req.body.subject;
               pollchar.remove({_id})
                .then( set=>{  res.json({
                   id:_id,
-                     message:"successfully deleted"
+                     message:null
               
                   })
                 }
@@ -80,7 +79,7 @@ var  subject=req.body.subject;
             else{
         
               res.json({
-                  
+                  id:"",
                 message: "question does not exist"
             })
             }
@@ -91,20 +90,6 @@ var  subject=req.body.subject;
         );
     
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 router.get('/subjects',auth,(req, res) => {
@@ -120,51 +105,6 @@ router.get('/subjects',auth,(req, res) => {
 
 
 // check for errors in name /addsub/:subject
-router.post('/',(req, res) => {
-
-   var  subject= req.body.subject;
-    console.log(req.body);
-    console.log("log");
-
-      subjectchar.findOne({subject})
-      .then(sub=>{
-          if(sub){
-                res.json({
-                
-                  message: "subject already exists"
-              })
-          }
-          else{
-            const newsub=new subjectchar({
-             subject
-          });
-            newsub.save()
-            .then(sub=>{
-                res.json({
-                 sub
-                });
-            })
-
-          }
-      // res.json({
-                
-      //               message: "success"
-      //           })
-      })
-
-          }
-      );
-  
-  
-
-
-
-
-
-
-
-
-
 
 
       router.post('/addsubject',(req, res) => {
@@ -174,7 +114,7 @@ router.post('/',(req, res) => {
             .then(set=>{
                 if(set){
                       res.json({
-                      
+                      sub:"",
                         message: "subject already exists"
                     })
                 }
@@ -185,7 +125,8 @@ router.post('/',(req, res) => {
                   newsub.save()
                   .then(sub=>{
                       res.json({
-                       sub
+                       sub,
+                       message:null
                                     });
                   })
         
@@ -195,18 +136,6 @@ router.post('/',(req, res) => {
         
                 }
             );
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       router.delete('/:id',(req, res) => {
@@ -219,8 +148,8 @@ router.post('/',(req, res) => {
                  .then(
                   pollchar.remove({subject})
                   .then( set=>{  res.json({
-                     id:_id
-                 
+                     id:_id,
+                 message:null
                      })
                    }
                   )
@@ -230,6 +159,7 @@ router.post('/',(req, res) => {
               else{
           
                 res.json({
+                  id:"",
                   message: "does not exist"
                     
               })

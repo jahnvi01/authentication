@@ -13,7 +13,7 @@ class Navbar extends Component {
        <div className="col-md-7 nav-part">
         <ul className="nav-list">
             <li><Link to="/profile" className="nav-item link">Home</Link></li>
-            <li><Link to="/test" className="nav-item link">Test</Link></li>
+            {/* <li><Link to="/test" className="nav-item link">Test</Link></li> */}
             <li className="nav-item">Scores</li>
             <li><Link className="nav-item link" to="/admin_login">Admin</Link></li>
             <li className="nav-item" onClick={()=>this.props.logout()}>Logout</li>

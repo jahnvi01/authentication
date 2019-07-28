@@ -6,6 +6,7 @@ html,body,.App{
 }
 .subject
 {
+  padding-top: 2%;
  width: 50%;
   display: flex;
   list-style: none;
@@ -24,6 +25,8 @@ html,body,.App{
 }
 .subject-list{
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin-top: 7%;
 }

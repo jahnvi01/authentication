@@ -44,7 +44,7 @@ class Editquiz extends Component {
     .then(data=>
       {
         if(data.message){
-          this.setState({message:data.message})
+       this.showalert(data.message);
        }
        else{ 
       this.setState({testset:[...this.state.testset,data.set]})
@@ -53,7 +53,15 @@ class Editquiz extends Component {
     )  
     }
 
-  
+  showalert=(msg)=>{
+    this.setState({visible:true});
+    this.setState({message:msg})
+    console.log(this.state);
+    const timer = setInterval(() => {
+      this.setState({visible:false,message:""});
+    }, 3000);
+    console.log(this.state);
+  }
 
   addquestion = (e) => {
       e.preventDefault();
@@ -63,7 +71,12 @@ var opt2=document.getElementById("opt2").value;
 var opt3=document.getElementById("opt3").value;
 var opt4=document.getElementById("opt4").value;
 var answer=document.getElementById("answer").value;
+
 if(question && opt1 && opt2 && opt3 && opt4 && answer ){
+  if(opt1!==opt2 && opt1!==opt3 && opt1!==opt4 && opt2!==opt3 && opt2!==opt4 && opt3!==opt4){
+  if(answer===opt1 || answer===opt2 || answer===opt3 || answer===opt4 ){
+
+ 
 var set={
     subject:this.props.test,
     question:question,
@@ -76,7 +89,13 @@ var set={
 this.addset(set);
 }
 else{
-    alert ("please fill up all fields");
+  this.showalert("answer should match with any option")
+}
+  }
+  this.showalert("all the options must be different")
+}
+else{
+  this.showalert ("please fill up all fields");
 } 
 };
 handleDelete=(e,id)=>{
@@ -111,14 +130,12 @@ componentWillMount(){
 }
 conditioncheck=()=>{
 
-  if(this.state.message){
-    this.setState({visible:true});
-       console.log(this.state.message);
-       this.setState({message:""});
-   const timer = setInterval(() => {
-    this.setState({visible:false,message:""});
-  }, 1000);
-     }  
+  // if(this.state.message){
+   
+  //      console.log(this.state.message);
+  //      this.setState({message:""});
+    
+  //    }  
      }
   render() {
     this.conditioncheck();
@@ -131,7 +148,7 @@ conditioncheck=()=>{
 
         return <div key={question._id}>
 <div style={{display: "flex"}}>
-          <h4>{i}.  {question.question}</h4> 
+          <h4 style={{marginRight: "auto"}}>{i}.  {question.question}</h4> 
           <button className="btn" onClick={(event)=>{this.handleDelete(event,question._id)}}>Delete</button>
           </div>
           <div>
@@ -168,14 +185,15 @@ conditioncheck=()=>{
          </form>
       </div>
       </div>
-      <form action="">
-         <div className="row">
+      <form action="" className="add-question">
+         <div className="row" >
              <div className="col-md-12"> 
-          <input type="text" id="question" placeholder="enter question title here..."/>
+             <h2 id="add-question-title" style={{marginBottom: "1%"}}>Add any question here</h2>
+          <input type="text" id="question" style={{width: "100%"}} placeholder="enter question title here..."/>
           </div>
           </div>
           <div className="row">
-             <div className="col-md-12"> 
+             <div className="col-md-12 add-options" > 
           <input type="text" id="opt1" placeholder="option 1"/>
           <input type="text" id="opt2" placeholder="option 2"/>
           <input type="text" id="opt3" placeholder="option 3"/>
@@ -187,7 +205,7 @@ conditioncheck=()=>{
           <input type="text" id="answer" placeholder="answer"/> 
           </div>
           </div>
-             <input type="submit"  value="Submit" className="btn" onClick={(event) => { this.addquestion(event)}} />
+             <input type="submit"  value="Add question" className="btn" onClick={(event) => { this.addquestion(event)}} />
      
         </form>
       </div>

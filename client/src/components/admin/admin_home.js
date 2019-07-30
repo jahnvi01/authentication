@@ -9,6 +9,7 @@ class AdminHome extends Component {
     visible: false,
     message:""
   };
+  
       componentDidUpdate(){
      
         if(this.props.access_verified===false){

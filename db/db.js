@@ -30,6 +30,35 @@ const userschema=new Schema({
 });
 
 
+const scoreschema=new Schema({
+    email:{
+        type:String,
+        required:true,
+        unique:true
+
+    },
+    subject:{
+        type:String,
+        required:true,
+        
+    },
+    score:{
+        type:Number,
+        required:true,
+    },
+correct:{
+    type:Number,
+        required:true, 
+} ,
+incorrect:{
+    type:Number,
+        required:true, 
+},
+notAnswered:{
+    type:Number,
+        required:true, 
+} ,
+});
 
 
 
@@ -82,6 +111,7 @@ const pollschema=new Schema({
 
 
  const userchar=mongoose.model('userchar',userschema);
+ const scorechar=mongoose.model('scorechar',scoreschema);
  const pollchar=mongoose.model('pollchar',pollschema);
  const subjectchar=mongoose.model('subjectchar',subjectschema);
- module.exports={userchar,pollchar,subjectchar};
+ module.exports={userchar,pollchar,subjectchar,scorechar};

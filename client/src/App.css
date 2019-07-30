@@ -16,12 +16,28 @@ html,body,.App{
   margin-right: auto;
 }
 
-.logo,.nav-item,.test{
+.logo,.nav-item,.test,#add-question-title{
   color: white;
   font-family: Verdana, Geneva, sans-serif;
   font-style: italic;
   font-weight: bold;
   font-size: 26px
+}
+#add-question-title{
+  color: black;
+}
+.add-question{
+  padding: 2%;
+  border:1px solid black;
+}
+.add-options{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+#answer{
+  margin-bottom: 1%;
 }
 .subject-list{
   display: flex;

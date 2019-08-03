@@ -10,8 +10,8 @@ app.use(cors());
 app.use(bodyparser.json());
 app.use('/api/test',testRoute);
 app.use('/api/info',info);
-var port = process.env.port || 5000;
+var port = process.env.port || 8080;
 
 // app.listen(port);
 var server=app.listen(port,function() {
-    console.log("app running on port 8080"); });
+    console.log(`app running on port${port}`); });

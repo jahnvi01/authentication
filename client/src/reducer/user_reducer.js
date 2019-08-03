@@ -1,6 +1,6 @@
 var initState={
     token:localStorage.getItem('token')|| null,
-    user:[],
+    user:"",
     message:"",
     correctAnswer:0,
     notAnswered:0,

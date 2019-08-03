@@ -116,29 +116,14 @@ handleDelete=(e,id)=>{
     })
 
 }
-componentDidUpdate(){
 
- 
- // this.getTest();
- //console.log(this.state);
-}
 componentWillMount(){
   this.getTest();
 
-  // this.setState({testset:this.props.testset});
-  //  console.log(this.props.testset);
 }
-conditioncheck=()=>{
 
-  // if(this.state.message){
-   
-  //      console.log(this.state.message);
-  //      this.setState({message:""});
-    
-  //    }  
-     }
   render() {
-    this.conditioncheck();
+    
     var questions;
     if (this.state.testset) {
       var i = 0;

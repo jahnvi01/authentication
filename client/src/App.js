@@ -10,6 +10,7 @@ import Charts from './components/charts';
 import Admin_login from './components/admin/login';
 import AdminHome from './components/admin/admin_home';
 import Editquiz from './components/admin/edit_test';
+import Scores from './components/scores';
 import 'bootstrap/dist/css/bootstrap.css';
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
     <Route exact path="/test" component={Quiz} />
     <Route exact path="/admin_login" component={Admin_login} />
     <Route exact path="/admin_home" component={AdminHome} />
+    <Route exact path="/scores" component={Scores} />
     <Route exact path="/edit" component={Editquiz} />
     <Route exact path="/chart" component={Charts} />
     </Switch >

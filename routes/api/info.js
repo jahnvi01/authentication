@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const char=require('../../db/db');
 const userchar=char.userchar;
+const scorechar=char.scorechar;
 const auth=require('./config');
 
 router.get('/',auth,(req, res) => {
@@ -153,9 +154,33 @@ router.post('/signin',(req, res) => {
     );
 
 
+    router.post('/scores',(req, res) => {
+        email=req.body.email;
+       // console.log(email);
+    scorechar.find({email})
+    .then(score=>{
+        res.json(
+            {score}
+        ) 
+    })
+    });
 
-
-
+    router.post('/sendscore',(req, res) => {
+        console.log(req.body);
+         var  subject=req.body.subject;
+                   var  email=req.body.email;
+           var  score=req.body.score;
+           var  correct=req.body.correctAnswer;
+           var  incorrect=req.body.incorrectAnswer;
+           var  notAnswered=req.body.notAnswered;
+        const scoreset=new scorechar({email,subject,score,correct,incorrect,notAnswered});
+        scoreset.save()
+        .then(set=>{
+            res.json({set})
+        })
+                }
+            );
+        
 
 module.exports = router;
 

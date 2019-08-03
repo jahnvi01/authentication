@@ -47,17 +47,28 @@ class Quiz extends Component {
       }
 
     };
+    var email,subject;
+    if(this.props.user){
+      var email=this.props.user[0].email;
+      var subject=this.props.test;
+    }
     notanswered=answers.length-incorrect-correct;
+    var score=correct/(incorrect+correct+notanswered);
+    score=score*100;
   var  data={
+    email:email,
+    subject:subject,
+    score:score,
       correctAnswer:correct,
       incorrectAnswer:incorrect,
       notAnswered:notanswered
     }
  this.props.sendScore(data);
- this.props.history.push('/chart');
+ //this.props.history.push('/chart');
   }
   getTest = () => {
     const token = localStorage.getItem('token');
+ 
     //  console.log(token);
     const config = {
       headers: {
@@ -81,6 +92,8 @@ class Quiz extends Component {
   }
   render() {
     var questions;
+  
+    
     if (this.state.testset) {
       var i = 0;
       questions = this.state.testset.map(question => {
@@ -163,9 +176,17 @@ function mapDispatchToStates(dispatch) {
       dispatch({ type: "clear", payload: "" })
     },
     sendScore: (data) => {
-      dispatch({ type: "score", payload: data })
+     
+      return fetch('/api/info/sendscore',{
+        method: "post",
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },body:JSON.stringify(data)})
+        .then(res=>res.json())
+      .then(response=> dispatch({ type: "score", payload: data }))
     },
-
+   
   }
 }
 

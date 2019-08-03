@@ -42,8 +42,9 @@ class Scores extends Component {
     }
     var i=0;
     if(this.state.score){
-        i++;
+      
     var showtable=this.state.score.map(set=>{
+      i++;
         return    <tr>
         <th scope="row">{i}</th>
         <td>{set.subject}</td>
@@ -54,7 +55,7 @@ class Scores extends Component {
       </tr>
      } )
     }
-   this.getScores();
+  // this.getScores();
     return (
       <div>
         <Navbar />

@@ -12,4 +12,6 @@ app.use('/api/test',testRoute);
 app.use('/api/info',info);
 var port = process.env.port || 5000;
 
-app.listen(port);
+// app.listen(port);
+var server=app.listen(port,function() {
+    console.log("app running on port 8080"); });

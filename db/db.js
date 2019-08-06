@@ -1,4 +1,5 @@
 var mongoose =require('mongoose');
+var moment=require('moment');
 mongoose.set('debug',true);
 mongoose.Promise=global.Promise;
 
@@ -52,12 +53,18 @@ correct:{
 } ,
 incorrect:{
     type:Number,
-        required:true, 
+    required:true, 
 },
 notAnswered:{
     type:Number,
         required:true, 
 } ,
+date:{
+    type:Date,
+    required:true,
+    default:Date(),
+   
+}
 });
 
 

@@ -11,8 +11,13 @@ class Charts extends Component {
   
         console.log(this.props.message);
         this.props.clear();
+        //console.log(this.props.correctAnswer+"a"+this.props.incorrectAnswer+"a"+this.props.notAnswered)
+        //if(this.props.correctAnswer===0 && this.props.incorrectAnswer===0 && this.props.notAnswered===0){
   
+         // this.props.history.push('/profile'); 
+        // }
       }
+ 
       if (!this.props.token) {
         this.props.history.push('/');
       }
@@ -20,17 +25,24 @@ class Charts extends Component {
     componentWillMount() {
   
       this.props.get();
-  if(this.props.correctAnswer===0 && this.props.incorrectAnswer===0 && this.props.notAnswered===0){
-
-    this.props.history.push('/profile'); 
-  }
+  
+    }
+    componentDidMount(){
+      this.props.get(); 
+    }
+    componentWillUnmount(){
+    //  this.props.get();
+      // if(this.props.correctAnswer===0 && this.props.incorrectAnswer===0 && this.props.notAnswered===0){
+    
+      //  this.props.history.push('/profile'); 
+      // }  
     }
   
     render() {
         var correctAnswer=this.props.correctAnswer;
         var incorrectAnswer=this.props.incorrectAnswer;
         var notAnswered=this.props.notAnswered;
-     
+     this.conditionCheck();
       return (
         <div>
           <Navbar />
@@ -81,9 +93,9 @@ class Charts extends Component {
       user: state.user.user,
       token: state.user.token,
       message: state.user.message,
-      notAnswered:state.user.notAnswered,
+      notAnswered:state.user.notAnswered ,
       incorrectAnswer:state.user.incorrectAnswer,
-        correctAnswer:state.user.correctAnswer
+        correctAnswer:state.user.correctAnswer 
     }
   }
   function mapDispatchToStates(dispatch) {

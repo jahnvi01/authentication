@@ -64,7 +64,7 @@ class Quiz extends Component {
       notAnswered:notanswered
     }
  this.props.sendScore(data);
- //this.props.history.push('/chart');
+ this.props.history.push('/chart');
   }
   getTest = () => {
     const token = localStorage.getItem('token');

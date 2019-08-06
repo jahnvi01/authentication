@@ -15,7 +15,7 @@ class profile extends Component {
      username=this.props.user.username;
     }
    if(!this.props.token){
-    console.log("condition");
+
       this.props.history.push('/');
    }
  

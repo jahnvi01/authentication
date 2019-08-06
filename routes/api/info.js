@@ -130,26 +130,10 @@ router.post('/signin',(req, res) => {
                        
                     })
                 }
-        
-        
                 )
             })
-
-
-
-
-
-
-
-        }
-      
+        } 
     })
-          
-                
-                
-
-
-
         }
     );
 
@@ -157,14 +141,25 @@ router.post('/signin',(req, res) => {
     router.post('/scores',(req, res) => {
         email=req.body.email;
        // console.log(email);
-    scorechar.find({email})
+       //console.log(Date.now())
+    scorechar.find({email}).sort({date: 'desc'})
     .then(score=>{
         res.json(
-            {score}
+            {score} 
         ) 
     })
     });
-
+    router.post('/subjects',(req, res) => {
+        email=req.body.email;
+       // console.log(email);
+       //console.log(Date.now())
+    scorechar.distinct('subject')
+    .then(subjects=>{
+        res.json(
+            {subjects} 
+        ) 
+    })
+    });
     router.post('/sendscore',(req, res) => {
         console.log(req.body);
          var  subject=req.body.subject;

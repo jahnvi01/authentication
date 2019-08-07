@@ -2,23 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navbar from './navbar';
-import BarChart from 'react-bar-chart';
-import { Chart } from "react-google-charts";
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
-const data = [
-  {text: 'Man', value: 500}, 
-  {text: 'Woman', value: 300} 
-];
-const margin = {top: 20, right: 20, bottom: 30, left: 40};
+
 class Scores extends Component {
 
   state = {
     score: null,
     subjects:[],
-    data: [
-      {text: 'Man', value: 500}, 
-      {text: 'Woman', value: 300} 
-    ],
+    data: [],
     
    }
  
@@ -59,20 +51,20 @@ class Scores extends Component {
 
   }
   selectSubject=()=>{
-    this.state.data.pop();
-    this.state.data.pop();
-   
-   console.log(this.state.data);
+
+this.setState({data:[]})
+console.log("aaa");
+   while(this.state.data.length!==0){
+     this.state.data.pop();
+   }
     var subject = document.getElementById("subject-option").value;
     this.state.score.map(set=>{
      if(set.subject===subject){
-     //  this.state.data.push(set.score);
-     var date=set.date;
-     var score=set.score;
-     var subdata=[date,score]
-     this.state.data.push(subdata);
+   this.state.data.push(set.score);
+  
+     this.setState({data:this.state.data})
      console.log(this.state.data);
-return this.state.data;
+      return this.state.data;
      }
      } ) 
     
@@ -86,6 +78,14 @@ return this.state.data;
     this.props.get();
     this.getScores();
     this.getSubjects();
+  }
+  showchart=()=>{
+    if(this.state.data){
+      console.log(this.state.data)
+      return <Sparklines data={this.state.data}>
+      <SparklinesLine color="blue" />
+    </Sparklines>
+    }
   }
  
   render() {
@@ -124,37 +124,8 @@ return this.state.data;
 
 <div className="row">
 <div className="col-md-6">
-<BarChart ylabel='Quantity'
-                  width={this.state.width}
-                  height={500}
-                  margin={margin}
-                  data={data}
-                  onBarClick={this.handleBarClick}/>
-      {/* <Chart
-  width={'500px'}
-  height={'300px'}
-  chartType="Bar"
-  loader={<div>Loading Chart</div>}
-  data={[
-    ['Year', 'Sales'],
-  this.state.data
-  ]}
-//   data={[
-//     ['Year', 'Sales'],
-// [1,3],
-// [2,5]
-//   ]}
+{this.showchart()}
 
-  options={{
-    // Material design options
-    chart: {
-      title: 'your Performance',
-      subtitle: 'subject',
-    },
-  }}
-  // For tests
-  rootProps={{ 'data-testid': '2' }}
-/> */}
 </div>
 <div className="col-md-6">
   <select id="subject-option" onChange={()=>{this.selectSubject()}}>

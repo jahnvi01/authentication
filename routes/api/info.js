@@ -9,7 +9,7 @@ const scorechar=char.scorechar;
 const auth=require('./config');
 
 router.get('/',auth,(req, res) => {
-    email=req.user.email;
+    email=req.user.email||req.user.newUser.email;
 userchar.find({email})
 .then(user=>{
     res.json(

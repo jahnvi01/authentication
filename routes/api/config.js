@@ -10,7 +10,8 @@ function auth(req,res,next){
     try{
     const decode=jwt.verify(token,'secretkey');
     req.user=decode;
-    // console.log(req.user);
+    console.log("config");
+    console.log(req.user);
     next();
     }
     catch(e){

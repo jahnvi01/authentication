@@ -14,8 +14,9 @@ class Subjects extends Component {
  this.props.history.push('/test');
    }
    showSubject=()=>{
+    var subjects
        if(this.props.subjects){
-        var subjects=this.props.subjects;         
+        subjects=this.props.subjects;         
 subjects=subjects.map(subject=>{
     return(
         <li key={subject._id} className="subject">
@@ -26,6 +27,8 @@ subjects=subjects.map(subject=>{
     )
       
 })
+       }else{
+subjects=<h3>No subjects to display</h3>
        }
 return subjects;
 }
@@ -35,6 +38,7 @@ return subjects;
     
               
                    <div className="container">
+                       
                        <ul className="subject-list">
 {this.showSubject()}
 </ul>

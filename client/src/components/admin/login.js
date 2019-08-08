@@ -42,6 +42,9 @@ class Admin_login extends Component {
       conditioncheck=()=>{
         console.log(this.props.access_verified);
         console.log(this.props.token);
+        if(this.props.token==="null"){
+          this.props.history.push('/'); 
+        }
     if(this.props.token){
       if(this.props.access_verified===true){
        

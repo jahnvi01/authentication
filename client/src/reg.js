@@ -97,6 +97,7 @@ this.conditioncheck();
     return{
       get:()=>{
         const token=localStorage.getItem('token');
+        console.log(token);
         const config={
           headers:{
             "content-type": "application/json"
@@ -109,6 +110,7 @@ this.conditioncheck();
         .then(res=>res.json())
         .then(data=>dispatch({type:"get",payload:data}))
       },
+
       clear:()=>{
         dispatch({type:"clear",payload:""})
       },

@@ -39,9 +39,9 @@ this.props.login(post);
      this.props.clear();
    
        }
-       if(this.props.token){
-         this.props.history.push('/profile');
-         }
+       if(this.props.token && this.props.token!=="null"){
+      this.props.history.push('/profile');  
+    }
       
   }
   render() {

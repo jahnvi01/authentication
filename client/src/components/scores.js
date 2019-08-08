@@ -10,7 +10,7 @@ class Scores extends Component {
   state = {
     score: null,
     subjects:[],
-    data: [],
+    data: [0,0,0,0],
     
    }
  

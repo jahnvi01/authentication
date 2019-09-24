@@ -1,5 +1,9 @@
 html,body,.App{
-  background: black !important;
+  background: white;
+}
+body{
+  font-family: 'Lato', sans-serif;
+
 }
 .navbar{
   background-color:blueviolet;
@@ -44,7 +48,7 @@ html,body,.App{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 7%;
+  margin-top: 0%;
 }
 .testlist{
   display: flex;
@@ -73,14 +77,17 @@ html,body,.App{
 .link:hover{
   text-decoration: none;
 }
-
-h3{
-  color:white;
+.form{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .block{
   height: auto;
-  margin: 10%;
-  background: black;
+  background: grey;
+  margin:3%;
+  padding:3%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -90,7 +97,9 @@ h3{
   background: white;
 }
 #log-title{
+  font-size: 30px;
   text-align: center;
+  padding: 3%;
 }
 Link{
   text-decoration-line: none !important;
@@ -106,7 +115,7 @@ Link{
   align-self: center;
 }
 #user-input,#password-input,#email-input,#subject-input{
-  width: 250px;
+  width: 400px;
   height:40px;
 
 }
@@ -152,3 +161,27 @@ Link{
   font-style: italic;
   font-size: 32px;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Lato:900);
+*, *:before, *:after{
+  box-sizing:border-box;
+}
+
+div.foo{
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+.letter{
+  display: inline-block;
+  font-weight: 800;
+  font-size: 5em;
+  text-decoration: underline;
+  /* margin: 0.2em; */
+  position: relative;
+  color: #00B4F1;
+  transform-style: preserve-3d;
+
+}
+
+

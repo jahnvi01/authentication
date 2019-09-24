@@ -92,10 +92,10 @@ addSubject=(e)=>{
   <h3 className="admin-title">Admin Dashboard</h3>
 
 
-  <div className="block" style={{margin: "5%"}}>
+  <div className="block" style={{backgroundColor: "white",margin:"0"}}>
         
         <div className="row log">
-            <div className="col-md-12 log-card">
+            <div className="col-md-12 log-card"  style={{backgroundColor: "grey"}}>
                
                 <form>
                 <div id="uname"> 
@@ -111,7 +111,7 @@ addSubject=(e)=>{
 
 
 
-<ul className="subject-list">
+<ul className="subject-list"  style={{padding:"10px",border:"2px solid black",boxShadow:"2px 2px 4px 3px grey"}}>
 {this.showSubject()}
 </ul>
 </div>

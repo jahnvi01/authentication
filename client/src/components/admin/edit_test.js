@@ -116,6 +116,13 @@ handleDelete=(e,id)=>{
     })
 
 }
+conditioncheck=()=>{
+       
+  console.log("condition"+this.props.access_verified);
+          if(this.props.access_verified===false){
+            this.props.history.push('/admin_login');
+            }  
+               }
 
 componentWillMount(){
   this.getTest();
@@ -123,7 +130,7 @@ componentWillMount(){
 }
 
   render() {
-    
+    this.conditioncheck();
     var questions;
     if (this.state.testset) {
       var i = 0;

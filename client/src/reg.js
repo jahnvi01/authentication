@@ -49,17 +49,21 @@ this.conditioncheck();
                  {this.state.visible ? (
           <Alert
             message={this.state.message}
-            type="success"
+            type="error"
             closable
             afterClose={this.handleClose}
           />
         ) : null}
-      
+              <div class="foo">
+  <span class="letter" data-letter="T">TESTPORTAL</span>
+  
+</div>
+
         <div className="block">
         <div className="row log">
             <div className="col-md-12 log-card">
             <h4 id="log-title">Member Registration </h4>
-            <form>
+            <form className="form">
                  <div id="uname"> 
                  <input type="text" id="user-input" placeholder="Username" required="required" />
                  </div>

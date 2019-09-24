@@ -66,27 +66,28 @@ class Admin_login extends Component {
              {this.state.visible ? (
               <Alert
                 message={this.state.message}
-                type="success"
+                type="error"
                 closable
                 afterClose={this.handleClose}
               />
             ) : null}
-             <div className="block">
+       
+             <div className="block" style={{margin:"0%",background:"white"}}>
         
             <div className="row log">
-                <div className="col-md-12 log-card">
-                    <h4 id="log-title">Admin Login </h4>
+                <div className="col-md-12 log-card" style={{background:"grey"}}>
+                    <h4 id="log-title" style={{color:"white"}}>Admin Login </h4>
                     <form>
                     <div id="uname"> 
-                 <input type="text" id="user-input" placeholder="Username" required="required" />
+                 <input type="text" id="user-input" value="admin" placeholder="Username" required="required" />
                  </div>
     
             
                       <div id="password-part"> 
-                     <input type="password" id="password-input" placeholder="Password" required="required" />
+                     <input type="password" id="password-input" value="admin" placeholder="Password" required="required" />
                      </div>
                      <div>   <input id="log" type="submit" onClick={(event)=>{this.getDetail(event)}} value="Log-In" /></div>
-                       <Link to="/register"><p id="new">For new account,Register here</p></Link>
+           
                        </form>
                  </div>
               

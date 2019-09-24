@@ -37,11 +37,11 @@ class profile extends Component {
                <Navbar />
                    <div className="container">
          
-<div className="row"  style={{marginTop:"20px"}}>
-<div className="col-md-4">
+<div className="row"  style={{marginTop:"20px",border:"2px solid black",boxShadow:"2px 2px 4px 3px grey"}}>
+<div className="col-md-3">
   <img alt="user" src={avatar} width="150" height="150"/>
   </div>
-                <div className="col-md-8" style={{    alignSelf: "center"}}>
+                <div className="col-md-9" style={{    alignSelf: "center"}}>
                   <h3>Name: {username|| "Can not display"}</h3>
                   <h3>Email: {email||"Login first"}</h3>
                 
@@ -50,8 +50,8 @@ class profile extends Component {
                
   </div>
   <div className="row"  style={{marginTop:"20px"}}>
-<div className="col-md-12 testlist">
-<h3>Choose Any Test</h3>
+<div className="col-md-12 testlist" style={{border:"2px solid black",boxShadow:"2px 2px 4px 3px grey"}}>
+<h3 style={{fontSize:"28px",padding:"2%"}}>Choose Any Test</h3>
 <Test />
 </div>
 </div>

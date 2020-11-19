@@ -97,7 +97,7 @@ router.post('/signin',(req, res) => {
         }
         else{
             const newUser=new userchar({
-                email,username,password
+                 email,username,password
             });
 
             bcrypt.genSalt(10, (err, salt) => {

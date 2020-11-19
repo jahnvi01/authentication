@@ -3,7 +3,7 @@ var moment=require('moment');
 mongoose.set('debug',true);
 mongoose.Promise=global.Promise;
 
-
+//new password edit left:jahnvi001
 mongoose.connect('mongodb://heroku_fg11g7w1:md6mli5kd26d4moi6qmts3mkkk@ds261277.mlab.com:61277/heroku_fg11g7w1',{useCreateIndex:true,useNewUrlParser:true})
 .then(()=>{console.log("mongo connected")})
 .catch (error=()=>{
